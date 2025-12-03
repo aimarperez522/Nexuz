@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4 shadow">
+           <h3 class="text-center mb-4"> <a style="color: var(--text);">Iniciar sesión</a> </h3>
+
+
+            <form method="POST">
+                <div class="mb-3">
+                    <a style="color: var(--text);">
+                    <label class="form-label">Correo</label>
+                    </a>
+                    <input type="email" name="correo" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <a style="color: var(--text);">
+                    <label class="form-label">Contraseña</label>
+                    </a>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-3">
+                    Entrar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
