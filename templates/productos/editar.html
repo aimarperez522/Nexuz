@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Editar Producto</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input type="text" name="nombre" class="form-control" value="{{ producto.nombre }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Descripción</label>
+        <textarea name="descripcion" class="form-control">{{ producto.descripcion }}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Precio</label>
+        <input type="number" step="0.01" name="precio" class="form-control" value="{{ producto.precio }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Stock</label>
+        <input type="number" name="stock" class="form-control" value="{{ producto.stock }}" required>
+    </div>
+
+    <div class="mb-3">
+    <label>Categoría</label>
+    <select name="categoria" class="form-control" required>
+        <option value="comida"      {% if producto.categoria == 'comida' %}selected{% endif %}>Comida</option>
+        <option value="papeleria"   {% if producto.categoria == 'papeleria' %}selected{% endif %}>Papelería</option>
+        <option value="tecnologia"  {% if producto.categoria == 'tecnologia' %}selected{% endif %}>Tecnología</option>
+        <option value="libro"       {% if producto.categoria == 'libro' %}selected{% endif %}>Libro</option>
+        <option value="ropa"        {% if producto.categoria == 'ropa' %}selected{% endif %}>Ropa</option>
+    </select>
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label">Imagen actual</label><br>
+        {% if producto.imagen %}
+            <img src="{{ url_for('static', filename='uploads/' ~ producto.imagen) }}" alt="Imagen del producto" width="150" class="mb-2">
+        {% else %}
+            <p class="text-muted">Sin imagen</p>
+        {% endif %}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Cambiar imagen (opcional)</label>
+        <input type="file" name="imagen" accept="image/*" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
+{% endblock %}
