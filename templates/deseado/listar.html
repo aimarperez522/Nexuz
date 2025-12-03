@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>❤️ Mis productos deseados</h2>
+
+{% if productos %}
+<div class="row">
+    {% for p in productos %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            {% if p.imagen %}
+            <img src="{{ url_for('static', filename='uploads/' ~ p.imagen) }}"
+                 class="card-img-top" style="height: 150px; object-fit: contain;">
+            {% endif %}
+
+            <div class="card-body">
+                <h5>{{ p.nombre }}</h5>
+                <p>{{ p.descripcion }}</p>
+                <p class="fw-bold">${{ '%.2f'|format(p.precio) }}</p>
+
+                <a href="{{ url_for('deseado.eliminar_deseado', producto_id=p.id) }}"
+                   class="btn btn-danger btn-sm">Quitar ❤️</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">No tienes productos deseados aún.</div>
+{% endif %}
+{% endblock %}
