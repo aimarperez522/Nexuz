@@ -1,0 +1,205 @@
+/* VARIABLES DE MODO CLARO */
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --card-bg: #f1f1f1;
+    --accent: #ab3bf6;
+    --nav-bg: linear-gradient(90deg, #d400ff 0%, #0e00cc 50%, #170042 100%);
+    --nav-text: #ffffff;
+}
+
+/* VARIABLES DE MODO OSCURO */
+[data-theme="dark"] {
+    --bg: #000000; /*fondo*/
+    --text: #ffffff;
+    --card-bg: #353535; /*fondo de compras*/
+    --accent: #8e60fa;
+    --nav-bg: linear-gradient(90deg, #2600ff 0%, #8100cc 50%, #310080 100%);
+    --nav-text: #f5f5f5;
+}
+
+/* GENERAL */
+body {
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    transition: 0.3s ease;
+}
+
+/* ------------------- NAVBAR ------------------- */
+.navbar-custom {
+    backdrop-filter: blur(8px);
+    background: var(--nav-bg) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand {
+    color: var(--nav-text) !important;
+}
+
+.navbar-custom .dropdown-menu {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dropdown-item {
+    color: var(--text) !important;
+}
+
+.dropdown-item:hover {
+    background: var(--accent);
+    color: rgb(255, 0, 0) !important;
+}
+
+/* BOTÓN MODO OSCURO */
+#modo-toggle {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background: var(--accent);
+    color: white;
+    transition: .2s;
+}
+
+#modo-toggle:hover {
+    opacity: 0.85;
+}
+
+/* ==== EVITAR QUE EL GRID CORTE SOMBRAS ==== */
+/* hacemos overflow visible en filas y columnas del grid */
+.row,
+[class*="col-"],
+.col,
+.col-md-4 {
+    overflow: visible !important;
+}
+
+/* ------------------- TARJETAS ------------------- */
+.card {
+    background: var(--card-bg) !important;
+    border-radius: 15px;
+    overflow: visible; /* IMPORTANTE: permitir sombra fuera del contenedor */
+    box-shadow: 0 4px 15px rgb(255, 0, 242); /* sombra original que funcionaba */
+    transition: transform .2s, box-shadow .2s;
+    border: none;
+    position: relative; /* para que z-index funcione */
+    z-index: 1; /* asegurar que la sombra se pinte por encima */
+}
+
+/* Sombra más marcada en hover (opcional pero bonito) */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(255, 0, 242, 0.9);
+}
+
+/* Si hay elementos hermanos con z-index más alto, podemos elevar la tarjeta al pasar el mouse */
+.card:hover { z-index: 5; }
+
+/* Imagen dentro de la card: mantener borde sutil y no cortar sombra */
+.card img {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* BOTONES */
+.btn-primary,
+.btn-success,
+.btn-outline-success {
+    background: var(--accent) !important;
+    border: none !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    opacity: 0.85 !important;
+}
+
+/* ------------------- CARRITO FLOTANTE ------------------- */
+.cart-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999; /* muy arriba para no taparlo */
+}
+
+.cart-float .btn {
+    border-radius: 50px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 10px rgb(200, 118, 255);
+}
+
+.cart-float .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+}
+
+/* ------------------- FOOTER ------------------- */
+footer {
+    background: var(--card-bg);
+    color: var(--text);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    border-top: 1px solid rgb(231, 83, 224);
+}
+
+/* ------------------- CONTENEDOR ------------------- */
+.container {
+    margin-top: 25px;
+}
+
+.btn-outline-secondary {
+    color: var(--text) !important;
+    border-color: var(--text) !important;
+}
+
+.btn-outline-secondary:hover {
+    background: var(--accent) !important;
+    color: #ff0000 !important;
+    border-color: var(--accent) !important;
+}
+
+.card h4 {
+    color: var(--text) !important;
+}
+
+/* ---------- FORZAR TEXTOS DE PRODUCTOS A USAR EL TEMA ---------- */
+
+/* Títulos */
+.card-title {
+    color: var(--text) !important;
+}
+
+/* Descripciones */
+.card-text,
+.text-muted {
+    color: var(--text) !important;
+    opacity: 0.85;
+}
+
+/* Precio */
+.card-body span,
+.card-body .fw-semibold {
+    color: var(--text) !important;
+}
+
+/* Existencias */
+.card-body .small {
+    color: var(--text) !important;
+}
+
+/* Categoría (badge) */
+.badge {
+    color: var(--text) !important;
+}
+
+/* Evitar que Bootstrap meta color fijo */
+.text-white, .text-dark {
+    color: var(--text) !important;
+}
+
